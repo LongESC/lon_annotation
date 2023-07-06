@@ -18,6 +18,7 @@ import org.springframework.cache.annotation.Cacheable;
  */
 public interface UserService extends IService<User> {
 
-    Page<User> findUsersByName(String name);
 
+
+    Page<User> findUsersByName(String name, Page page);
 }

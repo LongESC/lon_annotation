@@ -29,8 +29,8 @@ import java.util.Map;
  * @date: 2023/6/26 10:05
  * @version: 1.0
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class TranAspect {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -76,7 +76,7 @@ public class TranAspect {
 
             Result res = (Result)result;
             Page<Object> page=(Page<Object>)res.getData();
-            List<Object> users= (List<Object>) toTrans(page.getRecords());
+            List<Object> users= (List<Object>) toTransList(page.getRecords());
 
             return Result.success(page.setRecords(users));
 
@@ -119,7 +119,7 @@ public class TranAspect {
      * @date 2023/6/30 9:43
      */
 
-    public  Object toTrans(List<Object> list){
+    public  Object toTransList(List<Object> list){
         if (list == null || list.isEmpty()) {
             return null;
         }
@@ -134,6 +134,7 @@ public class TranAspect {
                         field.setAccessible(true);
                         TranField tranField = field.getAnnotation(TranField.class);
                         String type = tranField.type();
+
                         if (type.equals(TransType.SIMPLE)){
                             String tableFieldValue = tranField.tableField();
                             String tableMapField = tranField.tableMapField();
@@ -142,6 +143,14 @@ public class TranAspect {
                                 String value = (String) field.get(o);
                                 String tarnValue = baseMapper.findField(tableName, tableFieldValue, tableMapField + "=" + value);
                                 field.set(o,tarnValue);
+                            }
+                        }
+
+                        if (type.equals(TransType.DICTIONARY)){
+
+                            for (Object o : list) {
+                                String value = (String) field.get(o).toString();
+
                             }
                         }
                     }

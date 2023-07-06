@@ -59,10 +59,11 @@ public class RedisConfig extends CachingConfigurerSupport {
                     paramStringBuilder.append("java.lang.Object[null],");
                 } else {
                     paramStringBuilder
-                            .append(param.getClass().getName())
-                            .append("[")
+//                            .append(param.getClass().getName())
+//                            .append("[")
                             .append(String.valueOf(param))
-                            .append("],");
+                            .append(",");
+//                            .append("],");
                 }
             }
             if (StringUtils.hasText(paramStringBuilder.toString())) {

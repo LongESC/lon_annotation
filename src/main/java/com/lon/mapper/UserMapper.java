@@ -22,7 +22,7 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
-    Page<User> findUsersByName(String name);
+    Page<User> findUsersByName(String name,Page page);
 
 }
 

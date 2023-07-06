@@ -37,19 +37,16 @@ public class UserController {
     }
     @Translate(target = TransTarget.RESULT)
     @RequestMapping("/findUsersByName")
-    public Result findUsersByName(String name){
+    public Result<Object> findUsersByName(String name,Page page){
 
-        Page<User> page=userService.findUsersByName(name);
+        Page<User> list=userService.findUsersByName(name, page);
 
-        System.out.println(page.getRecords());
-
-        return Result.success(page);
+        return Result.success(list);
     }
 
     @Translate(target = TransTarget.PARAMS)
     @RequestMapping("/saveUser")
-    public Result Save(User user){
-
+    public Result<Object> Save(User user){
 
         System.out.println(user);
 

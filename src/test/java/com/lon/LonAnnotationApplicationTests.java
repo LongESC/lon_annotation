@@ -39,8 +39,8 @@ class LonAnnotationApplicationTests {
                         //允许修改反射属性
                         field.setAccessible(true);
                         TranField tranField = field.getAnnotation(TranField.class);
-                        String name = tranField.value();
-                        String value = (String) field.get(src);
+//                        String name = tranField.value();
+//                        String value = (String) field.get(src);
                     }
                 }
             } catch (Exception e) {
@@ -162,7 +162,7 @@ class LonAnnotationApplicationTests {
     @Test
     void sssssssssssssss(){
         String sql = "select id,pid,name from dic_dept where id>999 and id <10000";
-        List<Map<String,Object>> o = baseMapper.nativeSql2("dic_dept","id,name","id>999 and id <10000");
+        List<Map<String,Object>> o = baseMapper.findFields("dic_dept","id,name","id>999 and id <10000");
 
         System.out.println(o);
     }

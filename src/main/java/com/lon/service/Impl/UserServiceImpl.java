@@ -27,14 +27,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     public UserMapper userMapper;
 
-    Page<User> page =new Page<>();
+//    Page<User> page =new Page<>();
 
 
     @Override
-    public Page<User> findUsersByName(String name) {
+    public Page<User> findUsersByName(String name,Page page) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("name", name);
-        Page<User> usersByName = userMapper.selectPage(page.setCurrent(1).setSize(20),queryWrapper);
+        Page<User> usersByName = userMapper.selectPage(page,queryWrapper);
         return usersByName;
     }
 }
