@@ -4,6 +4,8 @@ import com.lon.comomon.RedisConstant;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +38,10 @@ public interface BaseMapper<T> extends com.baomidou.mybatisplus.core.mapper.Base
     String findField(@Param("tableName") String tableName,
                               @Param("field") String field,
                               @Param("condition") String condition) ;
+
+    @CacheEvict(cacheNames = RedisConstant.CacheNames.CACHE_1_DAY)
+    @Update("update md_user set dept=3002 where uno=710120220009")
+    boolean updateZtl();
 
 
 }

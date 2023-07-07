@@ -29,8 +29,8 @@ import java.util.Map;
  * @date: 2023/6/26 10:05
  * @version: 1.0
  */
-//@Aspect
-//@Component
+@Aspect
+@Component
 public class TranAspect {
 
     public final Logger logger = LoggerFactory.getLogger(this.getClass());

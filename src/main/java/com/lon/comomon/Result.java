@@ -12,7 +12,6 @@ public class Result<T> implements Serializable {
     private String msg;
     private T data;
 
-    // get set方法，限于篇幅问题，这里不写了，大家操作的时候自己生成一下。或者使用lombok
     public static <T> Result<T> success() {
         return new Result<>();
     }

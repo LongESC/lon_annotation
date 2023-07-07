@@ -5,6 +5,7 @@ import com.lon.annotation.TransTarget;
 import com.lon.annotation.Translate;
 import com.lon.comomon.Result;
 import com.lon.entity.User;
+import com.lon.mapper.BaseMapper;
 import com.lon.mapper.UserMapper;
 import com.lon.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -30,9 +31,11 @@ public class UserController {
 
     final UserService userService;
 
+    final BaseMapper baseMapper;
+
     @RequestMapping("/hello")
     public String hello(){
-
+        baseMapper.updateZtl();
         return "Hello World";
     }
     @Translate(target = TransTarget.RESULT)

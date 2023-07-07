@@ -41,40 +41,40 @@ public class RedisConfig extends CachingConfigurerSupport {
      * 重写缓存Key生成策略。
      * 包名+方法名+参数列表。防止缓存Key冲突
      */
-    @Bean
-    @Override
-    public KeyGenerator keyGenerator() {
-        return (target, method, params) -> {
-            // 存放最终结果
-            StringBuilder resultStringBuilder = new StringBuilder("cache:key:");
-            // 执行方法所在的类
-            resultStringBuilder.append(target.getClass().getName()).append(".");
-            // 执行的方法名称
-            resultStringBuilder.append(method.getName()).append("(");
-
-            // 存放参数
-            StringBuilder paramStringBuilder = new StringBuilder();
-            for (Object param : params) {
-                if (param == null) {
-                    paramStringBuilder.append("java.lang.Object[null],");
-                } else {
-                    paramStringBuilder
-//                            .append(param.getClass().getName())
-//                            .append("[")
-                            .append(String.valueOf(param))
-                            .append(",");
-//                            .append("],");
-                }
-            }
-            if (StringUtils.hasText(paramStringBuilder.toString())) {
-                // 去掉最后的逗号
-                String trimLastComma = paramStringBuilder.substring(0, paramStringBuilder.length() - 1);
-                resultStringBuilder.append(trimLastComma);
-            }
-
-            return resultStringBuilder.append(")").toString();
-        };
-    }
+//    @Bean
+//    @Override
+//    public KeyGenerator keyGenerator() {
+//        return (target, method, params) -> {
+//            // 存放最终结果
+//            StringBuilder resultStringBuilder = new StringBuilder("cache:key:");
+//            // 执行方法所在的类
+//            resultStringBuilder.append(target.getClass().getName()).append(".");
+//            // 执行的方法名称
+//            resultStringBuilder.append(method.getName()).append("(");
+//
+//            // 存放参数
+//            StringBuilder paramStringBuilder = new StringBuilder();
+//            for (Object param : params) {
+//                if (param == null) {
+//                    paramStringBuilder.append("java.lang.Object[null],");
+//                } else {
+//                    paramStringBuilder
+////                            .append(param.getClass().getName())
+////                            .append("[")
+//                            .append(String.valueOf(param))
+//                            .append(",");
+////                            .append("],");
+//                }
+//            }
+//            if (StringUtils.hasText(paramStringBuilder.toString())) {
+//                // 去掉最后的逗号
+//                String trimLastComma = paramStringBuilder.substring(0, paramStringBuilder.length() - 1);
+//                resultStringBuilder.append(trimLastComma);
+//            }
+//
+//            return resultStringBuilder.append(")").toString();
+//        };
+//    }
 
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
