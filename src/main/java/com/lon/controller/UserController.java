@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -34,8 +35,22 @@ public class UserController {
     final BaseMapper baseMapper;
 
     @RequestMapping("/hello")
+<<<<<<< HEAD
     public String hello(){
         baseMapper.updateZtl();
+=======
+    public String hello(HttpServletRequest request){
+
+        System.out.println(request.getRequestURL());//得到请求URL地址
+        System.out.println(request.getRequestURI());//得到请求的资源
+        System.out.println(request.getQueryString());
+        System.out.println(request.getRemoteAddr());//得到来访者IP
+        System.out.println(request.getRemoteHost());
+        //由于没有在dns上注册所以打印结果还是127.0.0.1,如果是百度访问这个程序，则打印www.baidu.com
+        System.out.println(request.getRemotePort());//得到请求的资源
+        System.out.println(request.getMethod());//得到请求的资源
+
+>>>>>>> d5321c4 (git test)
         return "Hello World";
     }
     @Translate(target = TransTarget.RESULT)
@@ -55,6 +70,9 @@ public class UserController {
 
         return Result.success(true);
     }
+
+
+
 
 
 }
