@@ -35,10 +35,6 @@ public class UserController {
     final BaseMapper baseMapper;
 
     @RequestMapping("/hello")
-<<<<<<< HEAD
-    public String hello(){
-        baseMapper.updateZtl();
-=======
     public String hello(HttpServletRequest request){
 
         System.out.println(request.getRequestURL());//得到请求URL地址
@@ -50,7 +46,6 @@ public class UserController {
         System.out.println(request.getRemotePort());//得到请求的资源
         System.out.println(request.getMethod());//得到请求的资源
 
->>>>>>> d5321c4 (git test)
         return "Hello World";
     }
     @Translate(target = TransTarget.RESULT)
